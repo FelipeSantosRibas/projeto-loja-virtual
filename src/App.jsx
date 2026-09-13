@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import hero from './assets/hero.png'
 import Benefits from './components/Benefits'
@@ -8,9 +9,12 @@ import HeroSection from './components/HeroSection'
 import Products from './components/Products'
 
 const App = () => {
+
+  const [cartCount, setCartCount] = useState(0)
+
   return (
     <div className="app">
-      <Header />
+      <Header cartCount={cartCount}/>
       <HeroSection 
         titulo ="Ofertas imperdíveis para você"
         subtitulo = "Até 30% de desconto em produtos selecionados. Aproveite!"
@@ -18,7 +22,7 @@ const App = () => {
         imagemHero = {hero}
       />
       <Categories />
-      <Products />
+      <Products setCartCount={setCartCount} />
       <Benefits />
       <Footer />
     </div>

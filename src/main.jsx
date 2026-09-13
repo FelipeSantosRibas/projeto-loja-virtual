@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-    errorElement: <PageNotFound/>
+    errorElement: <PageNotFound/>,
   },
   {path: "produtos", element: <ProductsPage/>},
   {path: "contato", element: <ContatoPage />}
@@ -21,5 +21,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </StrictMode>
 )
