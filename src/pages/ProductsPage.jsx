@@ -6,10 +6,11 @@ const ProductsPage = () => {
 
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
+    const [category, setCategory] = useState("electronics")
 
     useEffect(() => {
         // Versão com .then/.finally
-        getProducts()
+        getProducts(category)
         .then (data => setProducts(data))
         .finally(() => setIsLoading(false))
 
@@ -23,12 +24,14 @@ const ProductsPage = () => {
         //     }
         // }
         // loadProducts()
-    }, []);
+    }, [category]);
 
     return (
         <>
         <Header/>
             <h1>Todos os produtos</h1>
+            <button onClick={() => setCategory("electronics")}>Eletronicos</button>
+            <button onClick={() => setCategory("jewelery")}>Joias</button>
             {isLoading ? 
                 <p>Carregando produtos...</p>
             :
