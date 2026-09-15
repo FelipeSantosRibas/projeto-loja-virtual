@@ -1,27 +1,26 @@
 import { useEffect, useState } from "react";
-import { getProducts } from "../services/products"
 import Header from "../components/Header";
+import { Link } from "react-router";
 
 const ProductsPage = () => {
 
+    const API_URL = import.meta.env.VITE_API_URL
+    
     const [products, setProducts] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
     const [category, setCategory] = useState("electronics")
 
     useEffect(() => {
-        // Versão com .then/.finally
-        getProducts(category)
+        // Versão com .then
+        
+        fetch(`${API_URL}/products/category/${category}`)
+        .then(results => results.json())
         .then (data => setProducts(data))
-        .finally(() => setIsLoading(false))
+        
 
         // Versão com async/await (mesmo comportamento)
         // const loadProducts = async () => {
-        //     try {
-        //         const data = await getProducts()
-        //         setProducts(data)
-        //     } finally {
-        //         setIsLoading(false)
-        //     }
+        //         const data = await fetch(`${API_URL}/products/category/${category}`)
+        //         setProducts(data)  
         // }
         // loadProducts()
     }, [category]);
@@ -32,9 +31,6 @@ const ProductsPage = () => {
             <h1>Todos os produtos</h1>
             <button onClick={() => setCategory("electronics")}>Eletronicos</button>
             <button onClick={() => setCategory("jewelery")}>Joias</button>
-            {isLoading ? 
-                <p>Carregando produtos...</p>
-            :
             <div className="product-list">
                 {products.map((product) => (
                     <div className="product-card" key={product.id}>
@@ -42,30 +38,25 @@ const ProductsPage = () => {
                             src={product.image}
                             alt={product.title}
                         />
-
                         <p className="product-category">
                             {product.category}
                         </p>
-
                         <h3>{product.title}</h3>
-
                         <p className="product-rating">
                             ⭐⭐⭐⭐⭐ ({product.rating.rate})
                         </p>
-
                         <p className="product-price">
                             R$ {product.price}
                         </p>
-
-                        <button
-                            className="btn-secondary"
-                        >
+                        <Link to={`/produtos/${product.id}`}>
+                            Ver mais
+                        </Link>
+                        <button className="btn-secondary">
                             Adicionar ao carrinho
                         </button>
                     </div>
                 ))}
             </div>
-            }
         </>
         
 

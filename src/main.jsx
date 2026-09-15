@@ -7,6 +7,7 @@ import App from './App'
 import ProductsPage from './pages/ProductsPage'
 import ContatoPage from './pages/ContatoPage'
 import PageNotFound from './pages/PageNotFound'
+import ProductDetailPage from './pages/ProductDetailPage'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     errorElement: <PageNotFound/>,
   },
   {path: "produtos", element: <ProductsPage/>},
+  {path: "produtos/:idProduto", element: <ProductDetailPage/>},
   {path: "contato", element: <ContatoPage />}
 ]);
 
