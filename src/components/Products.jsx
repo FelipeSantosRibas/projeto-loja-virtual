@@ -1,6 +1,5 @@
 const Products = ({setCartCount}) => {
 
-
     const addToCart = () => {
         setCartCount(prev => prev + 1)
     }
@@ -8,7 +7,6 @@ const Products = ({setCartCount}) => {
      return (
         <section id="produtos" className="products">
             <h2>Produtos em destaque</h2>
-
             <div className="product-list">
                 <div className="product-card">
                     <img src="https://placehold.co/240x240/aa3bff/ffffff?text=Tenis" alt="Tênis esportivo" />
